@@ -44,3 +44,40 @@
 #             if v[i]==maxx:
 #                 print (k[i])       
 # longest_words("article.txt")
+
+# ДОП ЗАДАЧА.
+# Бассейн можно заполнить из N труб. В файле pipes.txt записаны времена заполнения 
+# всего бассейна только одной данной работающей трубой (в часах). 
+# Затем после пустой строки перечислены трубы, которые будут заполнять бассейн. 
+# Сколько минут на это потребуется?
+# Номер трубы соответствует номеру строки, в которой записана ее производительность.
+# Результат запишите в файл time.txt
+# n= int (input("Введите количество труб N = "))
+# with open ("pipes.txt","w",encoding="utf-8") as file:
+#     pipes_list = [i for i in range(1,n+1)]
+#     pipes_list = list(map(str,pipes_list))
+#     for num in pipes_list:
+#         file.write(num + "\n")
+      
+# with open ("pipes.txt","a",encoding="utf-8") as file:
+#     pipes_list = [i for i in range(1,n+1)]
+#     pipes_list = list(map(str,pipes_list))
+#     file.write("\n ")
+#     for num in pipes_list:
+#         file.write(num + "\t")
+
+# with open ("pipes.txt","r",encoding="utf-8") as file:
+#     pipes_set = []
+    
+#     while len(pipes_set)<n:
+#         line=file.readline()
+#         pipes_set.append(line.strip())
+#     pipes_set=list(map(int,pipes_set))
+#     print(pipes_set)
+#     pipes_set=list(map(lambda x:1/x,pipes_set))
+#     print(pipes_set)
+#     time = (1/sum(pipes_set))*60
+#     time = str(time)
+#     print (time)
+# with open ("time.txt","w",encoding="utf-8") as file:
+#     file.write(time)
