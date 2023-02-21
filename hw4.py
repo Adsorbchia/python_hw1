@@ -57,3 +57,12 @@
 #     i+=1
 
 # print(max)
+# 2 вариант решения, более короткий
+# maxx=0
+# res=0
+# x = [int (input ("введите количество ягод : ")) for _ in range(int(input("Введите количество кустов: "))) ]
+# print (x)
+# for i in range(len(x)):
+#     if x[i]+x[i-1] + x[i-2]>maxx:
+#         maxx=x[i]+x[i-1] + x[i-2]
+# print(maxx)
