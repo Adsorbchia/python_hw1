@@ -7,9 +7,8 @@
 # def read_last(lines, file):
 #     with open ("article.txt","r",encoding="utf-8") as file:
 #         text = file.read().splitlines()
-#         for el in range(len(text)):
-#             if el ==len(text)-1 or el==len(text)-2:
-#                  print(("\t"+ text[el] + "\n ")*lines)
+#         for el in range(len(text)-1 - lines+1,len(text)):
+#             print(("\t"+ text[el] + "\n "))
 
 # num = int(input("Введите число "))
 # if num <0:
@@ -52,32 +51,46 @@
 # Сколько минут на это потребуется?
 # Номер трубы соответствует номеру строки, в которой записана ее производительность.
 # Результат запишите в файл time.txt
-# n= int (input("Введите количество труб N = "))
-# with open ("pipes.txt","w",encoding="utf-8") as file:
-#     pipes_list = [i for i in range(1,n+1)]
-#     pipes_list = list(map(str,pipes_list))
-#     for num in pipes_list:
-#         file.write(num + "\n")
+import random
+n= int (input("Введите количество труб N = "))
+with open ("pipes.txt","w",encoding="utf-8") as file:
+    pipes_list =[]
+    for i in range(n):
+        pipes_list.append(random.randint(1, 4))
+    pipes_list = list(map(str,pipes_list))
+    for num in pipes_list:
+        file.write(num+"\n" )
       
-# with open ("pipes.txt","a",encoding="utf-8") as file:
-#     pipes_list = [i for i in range(1,n+1)]
-#     pipes_list = list(map(str,pipes_list))
-#     file.write("\n ")
-#     for num in pipes_list:
-#         file.write(num + "\t")
+with open ("pipes.txt","a",encoding="utf-8") as file:
+    pipes_list2=[]
+    for i in range(n):
+        pipes_list2.append(random.randint(1, n-1))
+        pipes_list2 = list(map(str,pipes_list2))
+    file.write("\n")
+    for num in pipes_list2:
+        file.write(num)
 
-# with open ("pipes.txt","r",encoding="utf-8") as file:
-#     pipes_set = []
-    
-#     while len(pipes_set)<n:
-#         line=file.readline()
-#         pipes_set.append(line.strip())
-#     pipes_set=list(map(int,pipes_set))
-#     print(pipes_set)
-#     pipes_set=list(map(lambda x:1/x,pipes_set))
-#     print(pipes_set)
-#     time = (1/sum(pipes_set))*60
-#     time = str(time)
-#     print (time)
-# with open ("time.txt","w",encoding="utf-8") as file:
-#     file.write(time)
+with open ("pipes.txt","r",encoding="utf-8") as file:
+    pipes = []
+    working_time=[]
+    res=[]
+    for i in range(n+2):
+        line=file.readline()
+        if i==n+1:
+            pipes.append(line.strip())
+        elif i <n:
+            working_time.append(line.strip())
+    working_time=list(map(int, working_time))       
+    pipes=" ".join(map(str, pipes))
+    pipes=set(list(map(int,pipes)))
+    print(pipes) # номера труб,которые заполняют бассейн
+    print(working_time) # время заполнения  в часах 
+    for ind in pipes:
+        res.append(1/working_time[ind-1]) 
+       
+    print(res)
+    time = (1/sum(res))*60
+    time = str(time)
+    print (time)
+with open ("time.txt","w",encoding="utf-8") as file:
+    file.write(time)
